@@ -16,30 +16,22 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
 )
 
+set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
 add_subdirectory(external/glad)
 add_subdirectory(external/spdlog)
 
+# glfw options
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+
+add_subdirectory(external/glfw)
+
 target_include_directories(${PROJECT_NAME} PUBLIC
     external/glad/include
+    external/glfw/include
     external/spdlog/include
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE glad glfw OpenGL::GL spdlog)
 
-# # testing_start()
-#
-# # gtest
-# include(FetchContent)
-# FetchContent_Declare(
-#   googletest
-#   URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
-# )
-# # For Windows: Prevent overriding the parent project's compiler/linker settings
-# set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-# FetchContent_MakeAvailable(googletest)
-#
-# enable_testing()
-# include(GoogleTest)
-#
-# add_subdirectory(test)
-# # testing_end()
