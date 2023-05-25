@@ -11,10 +11,14 @@ class program: public object {
 public:
     program() : object(glCreateProgram(), glDeleteShader) {}
 
+    // attach shader
+    //
+    // destroying the shader object after being used
     void attach(shader &&obj) {
         glAttachShader(this->get_id(), obj.get_id());
     }
 
+    // attach shader
     void attach(shader &obj) {
         glAttachShader(this->get_id(), obj.get_id());
     }

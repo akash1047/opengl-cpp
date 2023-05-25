@@ -1,8 +1,7 @@
 #include "../include/opengl/shader/shader.hpp"
 #include <fstream>
 
-std::string
-opengl::shader::shader::add_file_source(std::filesystem::path file_path) {
+void opengl::shader::shader::add_file_source(std::filesystem::path file_path) {
     int length;
     std::ifstream file(file_path, std::ios::in);
 
@@ -17,5 +16,7 @@ opengl::shader::shader::add_file_source(std::filesystem::path file_path) {
     std::string buffer(length, '\0');
     file.read(&buffer[0], length);
 
-    return buffer;
+    const char *src_str = buffer.c_str();
+
+    glShaderSource(this->get_id(), 1, &src_str, nullptr);
 }

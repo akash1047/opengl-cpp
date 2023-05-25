@@ -61,7 +61,7 @@ public:
         return log;
     }
 
-    std::string add_file_source(std::filesystem::path file_path);
+    void add_file_source(std::filesystem::path file_path);
 
     inline void add_source(const char *source) {
         if (source == nullptr) throw null_source{};
