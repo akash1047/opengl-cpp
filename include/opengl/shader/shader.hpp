@@ -21,14 +21,14 @@ public:
 
     class syntax_error: public std::exception {
     public:
-        syntax_error(std::string msg) : error_msg(std::move(msg)) {}
+        syntax_error(std::string err_msg) : msg(std::move(err_msg)) {}
 
         const char *what() const noexcept override {
-            return error_msg.c_str();
+            return msg.c_str();
         }
 
     private:
-        std::string error_msg;
+        std::string msg;
     };
 
     shader(int shader_kind)
