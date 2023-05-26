@@ -2,6 +2,7 @@
 
 #include <array>
 #include <cstddef>
+#include <glad/gl.h>
 namespace opengl {
 
 template <std::size_t Size>
@@ -19,7 +20,7 @@ public:
         return objects[index];
     }
 
-    inline void bind(std::size_t index) {
+    inline void bind(std::size_t index = 0) {
         glBindVertexArray(objects[index]);
     }
 

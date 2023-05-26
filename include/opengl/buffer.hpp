@@ -25,7 +25,7 @@ public:
         return objects[index];
     }
 
-    inline void bind(std::size_t index) {
+    inline void bind(std::size_t index = 0) {
         glBindBuffer(Kind, objects[index]);
     }
 
