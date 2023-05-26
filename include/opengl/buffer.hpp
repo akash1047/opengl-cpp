@@ -13,6 +13,10 @@ class buffer {
 public:
     constexpr static int kind = Kind;
 
+    inline static void unbind() {
+        glBindBuffer(Kind, 0);
+    }
+
     buffer() {
         glGenBuffers(Size, objects.data());
     }
@@ -27,10 +31,6 @@ public:
 
     inline void bind(std::size_t index = 0) {
         glBindBuffer(Kind, objects[index]);
-    }
-
-    inline void unbind() {
-        glBindBuffer(Kind, 0);
     }
 
 private:

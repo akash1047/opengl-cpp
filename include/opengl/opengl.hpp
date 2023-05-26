@@ -8,6 +8,10 @@ namespace opengl {
 template <std::size_t Size>
 class vertex_array {
 public:
+    inline static void unbind() {
+        glBindVertexArray(0);
+    }
+
     vertex_array() {
         glGenVertexArrays(Size, objects.data());
     }
