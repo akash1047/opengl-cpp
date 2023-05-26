@@ -14,24 +14,32 @@ public:
     constexpr static int kind = Kind;
 
     buffer() {
-        glGenBuffers(Size, object.data());
+        glGenBuffers(Size, objects.data());
     }
 
     virtual ~buffer() {
-        glDeleteBuffers(Size, object.data());
+        glDeleteBuffers(Size, objects.data());
     }
 
-    inline void bind(std::size_t index = 0) {
-        glBindBuffer(Kind, object[index]);
+    unsigned int operator[](std::size_t index) {
+        return objects[index];
+    }
+
+    inline void bind(std::size_t index) {
+        glBindBuffer(Kind, objects[index]);
+    }
+
+    inline void unbind() {
+        glBindBuffer(Kind, 0);
     }
 
 private:
-    std::array<unsigned int, Size> object;
+    std::array<unsigned int, Size> objects;
 };
 
 #define IMPL_GL_BUFFER(name, code)                                             \
-    template <int size = 1>                                                    \
-    using name = buffer<size, GL_##code##_BUFFER>;
+    template <int Size>                                                        \
+    using name = buffer<Size, GL_##code##_BUFFER>;
 
 IMPL_GL_BUFFER(array, ARRAY)
 IMPL_GL_BUFFER(atomic_counter, ATOMIC_COUNTER)
