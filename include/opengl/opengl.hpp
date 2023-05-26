@@ -15,8 +15,12 @@ public:
         glDeleteVertexArrays(Size, objects.data());
     }
 
-    unsigned int operator[](std::size_t index) {
+    inline unsigned int operator[](std::size_t index) {
         return objects[index];
+    }
+
+    inline void bind(std::size_t index) {
+        glBindVertexArray(objects[index]);
     }
 
 private:

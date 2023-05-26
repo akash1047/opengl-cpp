@@ -21,7 +21,7 @@ public:
         glDeleteBuffers(Size, objects.data());
     }
 
-    unsigned int operator[](std::size_t index) {
+    inline unsigned int operator[](std::size_t index) {
         return objects[index];
     }
 
