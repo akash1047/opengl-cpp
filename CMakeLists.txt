@@ -16,7 +16,7 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
 )
 
-set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 add_subdirectory(external/glad)
 
 # glfw options
@@ -31,5 +31,5 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     external/glfw/include
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE glad glfw OpenGL::GL spdlog)
+target_link_libraries(${PROJECT_NAME} PRIVATE glad glfw OpenGL::GL)
 
